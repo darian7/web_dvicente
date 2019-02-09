@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="row justify-content-center">
+
+    <div *ngIf="UserDatos.primer_nombre" class="col-md-8 order-md-1">
+      <h4 class="mb-3">Datos actuales del Usuario</h4>
+
+      <form onsubmit="this.reset()" class="form">
+        <div class="row">
+          <div class="col-md-6 mb-3 form-group">
+            <label>Nombre</label>
+            <input [(ngModel)]="UserDatos.primer_nombre" type="text" class="form-control" name="nombre" placeholder=""
+              value="" required="">
+          </div>
+          <div class="col-md-6 mb-3 form-group">
+            <label>Apellido</label>
+            <input [(ngModel)]="UserDatos.primer_apellido" type="text" class="form-control" name="nombre" placeholder=""
+              value="" required="">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6  form-group">
+            <label for="">Cargo</label>
+            <input [(ngModel)]="UserDatos.cargo" type="" class="form-control" name="contraseña" placeholder=". . . .">
+          </div>
+          <div class="col-md-4 mb-3 form-group">
+            <label for="">Salario</label>
+            <input [(ngModel)]="UserDatos.salario" type="text" class="form-control" name="experiencia" placeholder=""
+              value="" required="">
+          </div>
+
+        </div>
+        <button (click)="UpdateUser()" class="btn btn-primary btn-lg btn-block" type="submit">Actualizar
+          Usuario</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>

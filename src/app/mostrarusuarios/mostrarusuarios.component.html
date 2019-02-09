@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+  <div class="col-md-2"><span class="label label-danger">Buscar Usuario</span></div>
+  <div class="col-md-6">
+    <input [(ngModel)]="buscador" name="buscar" class="form-control mr-sm-2" type="search">
+  </div>  
+</div>
+
+<div class="row ">
+
+  <div *ngFor="let Usuarios of (usuarios | filtrousuarios : buscador)" class="col-md-4 text-center text-white">
+    <br>
+    <div class=" bg-primary" [ngClass]="{'bg-warning d-done':Usuarios.estado==0}">
+      <br>
+      <span *ngIf="Usuarios.estado; else falso" class="fas fa-user-check" style="font-size:100px"></span>
+      <ng-template #falso> <span class="fas fa-user-times" style="font-size:100px"></span> </ng-template>
+      <br>
+      <label>{{Usuarios.primer_nombre}}</label>
+      <br>
+      <label>{{Usuarios.primer_appellido}}</label>
+      <br>
+      <label>Cargo: {{Usuarios.cargo}}</label>
+      <br>
+      <label>salario:</label>
+      <br>
+      <label>{{Usuarios.salario}}</label>
+      <br>
+      <a class="text-danger" [routerLink]="['/updateUser',Usuarios.cedula_empleado]">Actualizar</a>
+      <br>
+      <br>
+    </div>
+  </div>
+
+</div>

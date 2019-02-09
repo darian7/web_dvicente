@@ -1,0 +1,154 @@
+
+
+  <div class="row">
+
+    <div class="col-md-3 form-group">
+      <label class="Display-5 text-center">Buscar</label>
+      <input [(ngModel)]="porNombre.valor1" class="form-control mr-sm-2" type="search" placeholder="" name="una"
+        (keyup)="ngOnInit()">
+    </div>
+
+    <div class="col-md-3 form-group">
+      <label class="Display-5 text-center">Cliente</label>
+      <input #fkcliente class="form-control mr-sm-2" type="search" placeholder="" name="una" (keyup)="ExisteCliente(fkcliente.value)">
+      <div *ngIf="HayCliente" class="alert alert-success">
+        {{NombreCliente}}
+      </div>
+    </div>
+
+    <div *ngIf="pedidoactivo" class="col-md-3">
+      <form class="form-inline">
+        <div class="select-group">
+          <label class="Display-5 text-center">Tipo de pago</label>
+          <select [(ngModel)]="factura.tipo" name="seleccion" class="custom-select my-1 mr-sm-2" #tipo>
+            <option selected value="CONTADO">Contado</option>
+            <option value="CREDITO">Credito</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="HayCliente" class="col-md-3">
+      <label class="Display-5 text-center"> Activar Pedido</label>
+      <div class="onoffswitch">
+        <input #activo type="checkbox" (click)="CerrarPedido(activo.checked)" name="onoffswitch" class="onoffswitch-checkbox"
+          id="myonoffswitch">
+        <label class="onoffswitch-label" for="myonoffswitch">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="row">
+
+    <div class="col-md-3 border">
+      <div *ngFor="let productospedidos of ProductosPedido; index as i" class="col-md-12">
+        <label for="">Producto: {{productospedidos.nombre}}</label>
+        <br>
+        <label for="">cantidad: {{productospedidos.cantidad}}</label>
+        <br>
+        <span (click)="EliminarProductoPedido(i)"><i class="fas fa-trash-alt" style="font-size:30px; cursor: pointer"></i></span>
+        <hr>
+      </div>
+    </div>
+
+
+    <div class="col-md-9">
+
+      <div class="row">
+
+        <div (mouseover)="Pedido(Productos.id_producto)" (mouseout)="Pedido(Productos.id_producto)" *ngFor="let Productos of productos" class="col-md-3 text-center"
+        data-toggle="modal" data-target="#ventanaproducto" style="cursor: pointer">
+<!--
+          <img (mouseover)="Pedido(Productos.idProducto)" (mouseout)="Pedido(Productos.idProducto)" data-toggle="modal"
+            data-target="#ventanaproducto" style="cursor: pointer" src="{{Productos.imagen}}" width="150" height="150"
+            class="mx-auto d-block">
+          <br>
+          <label>{{Productos.idProducto}} gg</label>-->
+          <br>
+          <label>{{Productos.nombre_producto}}</label>
+          <br>
+          <label>Precio: {{Productos.precio_kilo}}</label>
+          <br>
+          <label>Exitencia: {{Productos.cantidad}}</label>
+          <br>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="pedidoactivo" class=" modal fade " id="ventanaproducto" tabindex="-1" role="dialog" aria-labelledby="tituloventana"
+    aria-hidden="true">
+
+    <div class="modal-dialog border border-info" role="document">
+
+      <div class="modal-content container">
+
+        <div class="modal-header">
+
+          <h1 id="tituloventana">Añadir al carrito</h1>
+          <button class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+
+        <div class="modal-body">
+
+          <div class="alert alert-success text-center">
+            {{producto.nombre_producto}}
+          </div>
+<!--
+          <div class="row justify-content-center">
+            <br>
+            <img src="{{producto.imagen}}" width="200" height="200" class="mx-auto d-block">
+            <br>
+          </div>-->
+          <br>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <i class="fas fa-cart-arrow-down" style="font-size:70px ; cursor: pointer"></i>
+              </div>
+              <div class="col-md-4">
+                <form class="form-inline">
+                  <select class="custom-select my-1 mr-sm-2" #cantidad>
+                    <option value="0" selected>Seleccione...</option>
+                    <option *ngFor="let existe of ArregloExistencia; index as i">{{existe}}</option>
+                  </select>
+                </form>
+
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-cart-plus" style="font-size:70px ; cursor: pointer"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-warning" type="button" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button class="btn btn-warning" (click)="Validarpedido(cantidad.value)" type="button" data-dismiss="modal">
+            Agregar
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <hr>

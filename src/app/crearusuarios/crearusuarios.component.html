@@ -1,0 +1,109 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12 order-md-1">
+            <h4 class="mb-3">Datos del Usuario</h4>
+
+            <form  onsubmit="this.reset()" class="form">
+                <div class="row">
+                    <div class="col-md-6 mb-3 form-group">
+                        <label>Nombres</label>
+                        <input (keyup)="Verificar()" [(ngModel)]="UserDatos.nombre" type="text" class="form-control" name="nombre"
+                            placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3 form-group">
+                        <label>Apellidos</label>
+                        <input [(ngModel)]="UserDatos.apellido" type="text" class="form-control" name="apellidos"
+                            placeholder="" value="" required="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6 form-group">
+                        <label for="">Correo de Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@</span>
+                            </div>
+                            <input (keyup)="Verificar()" [(ngModel)]="UserDatos.correo" type="text" class="form-control" name="correoUsuario"
+                                placeholder="ejemplo@gmail.com" required="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6  form-group">
+
+                        <label  for="">Contraseña</label>
+                        <input (keyup)="Verificar()" [(ngModel)]="UserDatos.contrasena" type="password" class="form-control" name="contraseña"
+                            placeholder=". . . .">
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 form-group ">
+                        <label for="">Telefono 1</label>
+                        <input type="text" class="form-control" name="telefono1" placeholder="31 . . . . . 29" value=""
+                            required="">
+                    </div>
+
+                    <div class="col-md-6 mb-3 form-group">
+                        <label for="">Telefono 2<span class="text-muted">(Opcional)</span></label>
+                        <input type="text" class="form-control" name="telefono2" placeholder="31 . . . . . 29" value=""
+                            required="">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3 form-group">
+                        <label for="">Experiencia</label>
+                        <input [(ngModel)]="UserDatos.experiencia" type="text" class="form-control" name="experiencia"
+                            placeholder="" value="" required="">
+                    </div>
+
+                    <div class="col-md-8 mb-3 form-group">
+                        <label for="">Comentario</label>
+                        <textarea [(ngModel)]="UserDatos.comentario" type="text" class="form-control" rows="3" name="comentario"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-5 mb-3 form-group">
+                        <label for="">Identificacion</label>
+                        <input [(ngModel)]="UserDatos.identificacion" type="text" class="form-control" name="identificacion"
+                        placeholder="" value="" required="">
+                    </div>
+
+
+                    <div class="col-md-3 mb-3 form-group">
+                        <label for="">Genero</label>
+                        <select (click)="Verificar()" [(ngModel)]="UserDatos.genero" name="genero" class="form-control">
+                            <option value="0">Masculino</option>
+                            <option value="1">Femenino</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3 form-group">
+                        <label for="">Fecha de nacimiento</label>
+                        <input [(ngModel)]="UserDatos.nacimiento" type="date" class="form-control" name="nacimiento" step="1" >
+                    </div>
+
+                </div>
+
+
+                <hr class="mb-4">
+                <hr class="mb-4">
+                <button [disabled]="lleno" (click)=" CrearUsuarios()" class="btn btn-primary btn-lg btn-block" type="submit">Guardar
+                    Usuario</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+<div>
+    <div class="row">
+
+        <div class="col-md-3 border">
+
+            <div class="row">
+
+                <div *ngFor="let pedidosa of PedidosAtendido" class="col-md-12">
+                    <br>
+                    <label> Cliente: {{pedidosa.nombre}} </label>
+                    <br>
+                    <label> Fecha : {{pedidosa.fecha}}</label>
+                    <br>
+                    <label> Estado: {{pedidosa.estado}}</label>
+                    <br>
+                    <label> Cliente: {{pedidosa.fkCliente}}</label>
+                    <br>
+                    <label> Factura: {{pedidosa.fkFactura}}</label>
+                    <br>
+                    <a [routerLink]="['/detallepedido',pedidosa.idPedido]">detalles</a>
+                    <br>
+                    <br>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="col-md-9  border">
+            <div class="row">
+                <div *ngFor="let pedidosc of PedidosCola" class="col-md-4">
+                    <br>
+                    <label> Id Pedido: {{pedidosc.idPedido}}</label>
+                    <br>
+                    <label> Cliente: {{pedidosc.nombre}} </label>
+                    <br>
+                    <label> Fecha : {{pedidosc.fecha}}</label>
+                    <br>
+                    <label> Estado: {{pedidosc.estado}}</label>
+                    <br>
+                    <label> Cliente: {{pedidosc.fkCliente}}</label>
+                    <br>
+                    <label> Factura: {{pedidosc.fkFactura}}</label>
+                    <br>
+                    <a [routerLink]="['/detallepedido',pedidosc.idPedido]">detalles</a>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
