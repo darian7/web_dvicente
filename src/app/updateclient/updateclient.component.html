@@ -6,48 +6,62 @@
       <h4 class="mb-3">Datos del Cliente</h4>
 
       <form onsubmit="this.reset()" class="form">
+
         <div class="row">
           <div class="col-md-6 mb-3 form-group">
-            <label>Nombres</label>
-            <input [(ngModel)]="ClientDatos.nombre" type="text" class="form-control" name="nombre"
-              placeholder="" value="" required="">
+            <label>Primer nombre</label>
+            <input [(ngModel)]="ClientDatos.primer_nombre_comandante" type="text" class="form-control" name="p_nombre" placeholder=""
+              value="" required="">
           </div>
           <div class="col-md-6 mb-3 form-group">
-            <label>Apellidos</label>
-            <input [(ngModel)]="ClientDatos.apellido" type="text" class="form-control" name="apellidos" placeholder=""
+            <label>Segundo nombre</label>
+            <input [(ngModel)]="ClientDatos.segundo_nombre_comandante" type="text" class="form-control" name="s_nombre" placeholder=""
               value="" required="">
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-md-6 mb-3 form-group">
+            <label>Primer apellido</label>
+            <input [(ngModel)]="ClientDatos.primer_apellido_comandante" type="text" class="form-control" name="p_apellido" placeholder=""
+              value="" required="">
+          </div>
+          <div class="col-md-6 mb-3 form-group">
+            <label>Segundo apellido</label>
+            <input [(ngModel)]="ClientDatos.segundo_apellido_comandante" type="text" class="form-control" name="s_apellido" placeholder=""
+              value="" required="">
+          </div>
+        </div>
 
         <div class="row">
 
-          <div class="col-md-5 mb-3 form-group">
-            <label for="">Identificacion</label>
-            <input [(ngModel)]="ClientDatos.identificacion" type="text" class="form-control" name="identificacion"
+          <div class="col-md-4 mb-3 form-group">
+            <label for="">cedula</label>
+            <input [(ngModel)]="ClientDatos.cedula" type="text" class="form-control" name="identificacion"
               placeholder="" value="" required="">
           </div>
 
-
-          <div class="col-md-3 mb-3 form-group">
-            <label for="">Tipo cliente</label>
-            <select  [(ngModel)]="ClientDatos.fkTipoCliente" name="genero" class="form-control">
-              <option value="1">Persona Natural</option>
-              <option value="2">Con negocio</option>
-            </select>
+          <div class="col-md-4 mb-3 form-group">
+            <label for="">cargo</label>
+            <input [(ngModel)]="ClientDatos.cargo_ejercito" type="text" class="form-control" name="cargo"
+              placeholder="" value="" required="">
           </div>
 
           <div class="col-md-4 mb-3 form-group">
-            <label for="">Fecha de nacimiento</label>
-            <input [(ngModel)]="ClientDatos.fe_naci" type="date" class="form-control" name="nacimiento" step="1">
+            <label for="">telefono</label>
+            <input [(ngModel)]="ClientDatos.telefono" type="text" class="form-control" name="telefono"
+              placeholder="" value="" required="">
           </div>
 
         </div>
+
         <hr class="mb-4">
         <hr class="mb-4">
+
         <button (click)="UpdateClient()" class="btn btn-primary btn-lg btn-block" type="submit">Actualizar
           Cliente</button>
       </form>
+
     </div>
 
   </div>

@@ -1,15 +1,20 @@
-<div class="row "> 
+<div class="row" *ngIf="Loading">
+  <mat-card class="col-md-3" *ngFor="let productos of ProductosPedido; let i = index">
+    <img data-toggle="modal" data-target="#ventanaproducto" style="cursor: pointer" src="/src/assets/defecto.png"
+      width="100%" class="">
+    <br>
+    <dt style="color: black">{{productos.nombre_producto}}</dt>
+    <dd style="color: black">Cantidad: {{pedido[i].cantidad_kilos}}</dd>
+    <dd style="color: black">Total: {{pedido[i].precio_cantidad}}</dd>
+    <p style="color:#0089ff" *ngIf="pedido[i].cantidad_kilos > productos.cantidad">
+      la cantidad solicitada en el pedido es mayor a la del inventario actualmente existen {{productos.cantidad}}
+      unidades disponibles
+    </p>
+  </mat-card>
+</div>
+<div class="row">
 
-
-  <div class="col-md-4" *ngFor="let productos of ProductosPedido">
-    <br>
-    <label>Nombre: {{productos.nombre}}</label>
-    <br>
-    <label>Cantidad: {{productos.cantidad}}</label>
-    <br>
-    <label>Cantidad: {{productos.fecha_pedido}}</label>
-    <br>
-    <br>
+  <div class="col-md-4">
+    <a [routerLink]="['/factura',id]">Generar factura</a>
   </div>
-
 </div>

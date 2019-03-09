@@ -5,17 +5,12 @@
 </div>
 
 <div class="row">
-  <div *ngFor="let cliente of clientes | clienteFiltro : buscador" class="col-md-3">
-    <br>
-    <label>Nombre: {{cliente.nombre}}</label>
-    <br>
-    <label>Identificacion: {{cliente.identificacion}}</label>
-    <br>
-    <div *ngIf="cliente.estado"> <label>Estado: Habilitado</label> </div>
-    <div *ngIf="!cliente.estado"> <label>Estado: desabilitado</label> </div>
-    <br>
-    <a class="text-danger" [routerLink]="['/updateClient',cliente.idCliente]">Actalizar</a>
-    <br>
-    <br>
-  </div>
+  <mat-card *ngFor="let cliente of clientes | clienteFiltro : buscador" class="col-md-3">
+    <img style="cursor: pointer" src="/src/assets/usuario.jpg"
+      width="100%" class="">
+      <br>
+    <dt style="color: black">{{cliente.primer_nombre_comandante}} {{cliente.primer_apellido_comandante}}</dt>
+    <dd style="color: black">Identificacion: {{cliente.cedula}}</dd>
+    <a class="text-danger" [routerLink]="['/updateClient',cliente.cedula]">Actalizar</a>
+  </mat-card>
 </div>

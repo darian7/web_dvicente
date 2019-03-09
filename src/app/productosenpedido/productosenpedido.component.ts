@@ -8,55 +8,43 @@ import { AuthService } from '../auth.service';
 })
 export class ProductosenpedidoComponent implements OnInit {
 
-  constructor(private ruta: ActivatedRoute, private servicio : AuthService ) {
+  constructor(private ruta: ActivatedRoute, private servicio: AuthService) {
 
     this.ruta.params.subscribe(params => {
 
       console.log(params['id'] + " esta es la ruta")
-      this.servicio.ConsultarPedido(params['id']).then(response => response.json())
-      .then(json => {
-        console.log(json)
-        this.pedido= json[0];
-        console.log("esta aca")
-        console.log(this.pedido)
-        this.servicio.ConsultarDetallePedido(this.pedido.idPedido).then(response => response.json())
-        .then(json => {
-          this.ProductosPedido = json[0];
-        });
+
+      this.id = params['id'];
+
+      this.pedido =[];
+
+      this.ProductosPedido = [];
+
+
+      this.servicio.ConsultarDetallePedido(params['id']).subscribe(json => {
+      
+        this.pedido = json;
+
+        for (let index = 0; index < json.length; index++) {
+          this.servicio.ListarProducto(json[index].fk_producto).subscribe(json => this.ProductosPedido.push(json))
+        }
+
+        this.Loading = true;
 
       });
 
     })
 
-   }
+  }
 
-   pedido : {  
-   idPedido: Number,
-   referencia : String,
-   fecha : String,
-   estado: String,
-   fkFactura: Number,
-   fkCliente: Number
-   }={
-    
-   idPedido: null,
-   referencia : "",
-   fecha : "",
-   estado: "",
-   fkFactura: null,
-   fkCliente: null
-   }
 
-   ProductosPedido : Array< { 
-   nombre : String,
-   referencia: Number,
-   iva: Number,
-   existencia : Number,
-   fecha_pedido: String,
-   cantidad: Number,
-   refer_pedidio: Number,
-   estado :String 
-  } > = [];
+  id;
+
+  Loading = false;
+
+  pedido:Array<any> = [];
+
+  ProductosPedido: Array<any> = [];
 
   ngOnInit() {
   }

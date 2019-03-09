@@ -18,16 +18,16 @@ export class PedidosComponent implements OnInit {
 
   }
 
-  PedidosCola: Array<facePedido> = [];
+  PedidosCola: Array<any> = [];
 
-  PedidosAtendido: Array<facePedido> = [];
+  PedidosAtendido: Array<any> = [];
 
   i = 0;
   i2 = 0;
 
   ngOnInit() {
-    this.ConsultarPedidosAtendido2();
-    this.ConsultarPedidoCola2();
+    this.consultar_despachados();
+    this.consultar_Cola();
   }
 
   ConsultarPedidosAtendido2() {
@@ -103,6 +103,21 @@ export class PedidosComponent implements OnInit {
     });
 
   }
+
+  consultar_Cola (){
+    this.Servicio.CosnultarPedidoEstado("cola").subscribe(json =>{
+      console.log(json);
+      this.PedidosCola=json;
+    });
+  }
+
+  consultar_despachados (){
+    this.Servicio.CosnultarPedidoEstado("despachados").subscribe(json =>{
+      console.log(json);
+      this.PedidosAtendido=json;
+    });
+  }
+
 
 }
 

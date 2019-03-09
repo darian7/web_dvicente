@@ -44,3 +44,8 @@
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
+mat-card {
+    box-shadow: none !important;
+    background-color: white;
+}

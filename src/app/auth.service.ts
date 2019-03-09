@@ -13,15 +13,16 @@ export class AuthService {
   constructor(public http: HttpClient, public urlbase: urlBase) {
   }
 
-  ValidarUsuario(user) {
+  ValidarUsuario(user) : any {
+    console.log(user);
 
-    return fetch(this.urlbase.geturl() + "users/signin", {
-      method: 'POST',
-      body: 'correo=' + user.correo + '&&contrasena=' + user.contrasena,
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded"
-      }
-    })
+    const httpPostOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+    };
+
+    return this.http.post(this.urlbase.geturl() + "login", user, httpPostOptions);
   }
 
   CrearUsuarios(userdatos) {
@@ -66,9 +67,10 @@ export class AuthService {
     })
   }
 
-  ListarProducto(idproducto) {
+  ListarProducto(idproducto):any {
 
-    return fetch(this.urlbase.geturl() + "productos/" + idproducto)
+   //return fetch(this.urlbase.geturl() + "productos/" + idproducto)
+    return this.http.get(this.urlbase.geturl() + "productos/"+ idproducto)
 
   }
 
@@ -91,35 +93,32 @@ export class AuthService {
     })
   }
 
-  CrearPedido(pedido) {
-    return fetch(this.urlbase.geturl() + "pedido/create", {
-      method: 'POST',
-      body: 'fkFactura=' + pedido.fkFactura + '&&fkCliente=' + pedido.fkCliente,
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded"
-      }
-    })
+  CrearPedido(pedido):any {
+
+    console.log(pedido);
+
+    const httpPostOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+    };
+
+    return this.http.post(this.urlbase.geturl() + "pedidos", pedido, httpPostOptions)
   }
 
-  AñadirProductos(producto: { fkProducto: Number, fkPedido: Number, cantidad: String }) {
-    console.log("dentro añadir productos")
-    return fetch(this.urlbase.geturl() + "pedido/AddProductToPedido", {
-      method: 'POST',
-      body: 'fkProducto=' + producto.fkProducto + '&&fkPedido=' + producto.fkPedido + '&&cantidad=' + producto.cantidad,
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded"
-      }
-    })
+  AñadirProductos(contenido:any): any {
+    const httpPostOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+    };
+
+    return this.http.post(this.urlbase.geturl() + "contenidos", contenido, httpPostOptions) 
   }
 
-  ElimarProductosPedido(producto: { fkProducto: Number, fkPedido: Number }) {
-    return fetch(this.urlbase.geturl() + "pedido/RemoveProductoOfPedido", {
-      method: 'PUT',
-      body: 'fkProducto=' + producto.fkProducto + '&&fkPedido=' + producto.fkPedido,
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded"
-      }
-    })
+  ElimarProductosPedido(producto: any) {
+    console.log(producto)
+    return this.http.post(this.urlbase.geturl() + "contenidos_delete", producto)
   }
 
   CambiarEstae(idPedido) {
@@ -133,19 +132,20 @@ export class AuthService {
   }
 
   ConsultarPedido(idProducto) {
-    return fetch(this.urlbase.geturl() + "pedido/getOne/" + idProducto);
+    return this.http.get<Array<any>>(this.urlbase.geturl() + "pedidos/" + idProducto);
   }
 
-  ConsultarDetallePedido(idProducto) {
-    return fetch(this.urlbase.geturl() + "pedido/getProductosPorPedido/" + idProducto);
+  ConsultarDetallePedido(id_pedido):any {
+    return this.http.get<Array<any>>(this.urlbase.geturl() + "detalle_pedido/" + id_pedido);
+    
   }
 
   ClienteIdentificacion(identificacion) {
     return fetch(this.urlbase.geturl() + "cliente/getByIdentifi/" + identificacion);
   }
 
-  BuscarClientes() {
-    return fetch(this.urlbase.geturl() + "cliente/All");
+  BuscarClientes() : any  {
+    return this.http.get(this.urlbase.geturl() + "comandantes");
   }
 
   ClienteID2(id: Number): Observable<Array<faceCliente>> {
@@ -154,6 +154,10 @@ export class AuthService {
 
   CosnultarPedidoEstado2(estado): Observable<Array<facePedido>> {
     return this.http.get<Array<facePedido>>(this.urlbase.geturl() + "pedido/getPedidoEstadoX/" + estado);
+  }
+
+  CosnultarPedidoEstado(estado): Observable<Array<facePedido>> {
+    return this.http.get<Array<any>>(this.urlbase.geturl() + "pedidos_" + estado);
   }
 
   CreateClient(cliente) {
@@ -179,16 +183,16 @@ export class AuthService {
   }
 
   SelectClient(idclient) {
-    return this.http.get(this.urlbase.geturl() + "cliente/getOne/" + idclient)
+    return this.http.get(this.urlbase.geturl() + "comandantes/" + idclient)
   }
 
-  UpdateClient(client) {
+  UpdateClient(client) :any {
     const httpPostOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
     };
-    return this.http.put(this.urlbase.geturl() + "cliente/update", client, httpPostOptions)
+    return this.http.put(this.urlbase.geturl() + "updcomandante", client, httpPostOptions)
   }
 
 }

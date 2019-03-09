@@ -25,9 +25,12 @@ import { ClientePipe } from './cliente.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CrearclienteComponent } from './crearcliente/crearcliente.component';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
-import {MatButtonModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule} from '@angular/material';
 import { UpdateclientComponent } from './updateclient/updateclient.component';
 import 'hammerjs';
+import { OwlModule } from 'ngx-owl-carousel';
+import {MatCardModule} from '@angular/material/card';
+//import { MatMenu} from '@angular/material/menu';
 
 
 
@@ -36,7 +39,7 @@ const routes: Routes = [
   { path: 'mostrarusuarios', component: MostrarusuariosComponent },
   { path: 'crearusuarios', component: CrearusuariosComponent },
   { path: 'pedidos', component: PedidosComponent },
-  { path: 'facturas', component: FacturasComponent },
+  //{ path: 'facturas', component: FacturasComponent },
   { path: 'home', component: HomeComponent },
   { path: 'detallepedido/:id', component: ProductosenpedidoComponent },
   { path: 'productos', component: ProductosComponent },
@@ -46,7 +49,8 @@ const routes: Routes = [
   { path: 'createclientes', component: CrearclienteComponent},
   { path: 'app', component: AppComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: '**', redirectTo: '/', pathMatch:'full'}
+  { path: '**', redirectTo: '/', pathMatch:'full'},
+  { path: 'factura/:id', component: FacturasComponent }
 ];
 
 @NgModule({
@@ -79,7 +83,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    OwlModule,
+    MatMenuModule,
+    MatCardModule
   ],
   providers: [AuthService,urlBase,],
   bootstrap: [AppComponent]

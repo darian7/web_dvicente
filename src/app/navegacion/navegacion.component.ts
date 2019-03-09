@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavegacionComponent implements OnInit {
 
+  tipo_cliente: string = '';
+
   constructor() { }
 
   ngOnInit() {
+    if (localStorage.getItem('logeado')) {
+
+      this.tipo_cliente = JSON.parse(localStorage.getItem('tipo_usuario'));
+      console.log(this.tipo_cliente)
+      
+    }
   }
 
   CerrarSesion(){

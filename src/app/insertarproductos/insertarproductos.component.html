@@ -9,91 +9,32 @@
 
                     <div class="col-md-6 mb-3 form-group">
                         <label for="nombreproducto">Nombre del Producto</label>
-                        <input (keyup)="Validar()" [(ngModel)]="producto.nombre" type="text" class="form-control" name="nombreproducto"
-                            placeholder="Ejemplo: Acetaminofen" value="" required="">
+                        <input (keyup)="Validar()" [(ngModel)]="producto.nombre_producto" type="text" class="form-control"
+                            name="nombreproducto" placeholder="Ejemplo: Acetaminofen" value="" required="">
                     </div>
-
                     <div class="col-md-6 mb-3 form-group">
-                        <label for="lastName">Referencia</label>
-                        <input [(ngModel)]="producto.referencia" type="text" class="form-control" name="referencia"
-                            placeholder="" value="" required="">
+                        <label for="precioproducto">Precio Unitario $</label>
+                        <input (keyup)="Validar()" [(ngModel)]="producto.precio_kilo" type="text" class="form-control"
+                            name="precioproducto" placeholder="Ejemplo: 2000" value="" required="">
                     </div>
-
-
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-6 mb-3 form-group">
-                        <label for="">Comentario</label>
-                        <textarea [(ngModel)]="producto.comentario" type="text" class="form-control" rows="5" name="comentario"></textarea>
-                    </div>
-
-                    <div class="col-md-6 mb-3 f">
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3 form-group">
-                                <label for="precioproducto">Precio Unitario $</label>
-                                <input (keyup)="Validar()" [(ngModel)]="producto.precio" type="text" class="form-control" name="precioproducto"
-                                    placeholder="Ejemplo: 2000" value="" required="">
-                            </div>
-
-                            <div class="col-md-6 mb-3 form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input [(ngModel)]="producto.existencia" type="text" class="form-control" name="cantidad"
-                                    placeholder=". . ." required="">
-                            </div>
-
-
-                        </div>
-
-                        <div class="row">
-
-
-                            <div class="col-md-6 mb-3 form-group">
-                                <label for="lastName">Iva %</label>
-                                <input [(ngModel)]="producto.iva" type="text" class="form-control" name="iva"
-                                    placeholder="Ejemplo:10" value="" required="">
-                            </div>
-
-                            <div class="col-md-6 mb-3 form-group">
-                                <label for="lastName">Descuento %</label>
-                                <input [(ngModel)]="producto.descuento" type="text" class="form-control" name="descuento"
-                                    placeholder="Ejemplo: 50" value="" required="">
-                            </div>
-
-                        </div>
+                        <label for="cantidad">Cantidad</label>
+                        <input [(ngModel)]="producto.cantidad" type="text" class="form-control" name="cantidad"
+                            placeholder=". . ." required="">
                     </div>
 
                 </div>
                 <hr class="mb-3">
 
-                <div class="row">
-
-                    <div  class="col-md-6 mb-3 form-group">
-                        <label for="detalleproducto"> Detalle del producto</label>
-                        <input [(ngModel)]="producto.detalle" type="text" class="form-control" name="detalleproducto"
-                            placeholder="Ejemplo: xxxx" value="" required="">
-                    </div>
-
-                    <div  class="col-md-6 mb-3 form-group">
-                        <label for="imagenproducto"> Link de la imagen </label>
-                        <input [(ngModel)]="producto.imagen" type="text" class="form-control" name="imagenproducto"
-                            placeholder="Ejemplo: http//imagen.jpg" value="" required="">
-                    </div>
-
-
-                </div>
-
-                <hr class="mb-3">
-                <button [disabled]="lleno" (click)="CrearProductos()" class="btn btn-primary btn-lg btn-block" type="submit">Guardar
-                    Producto</button>
+                <button [disabled]="lleno" (click)="CrearProductos()" class="btn btn-primary btn-lg btn-block"
+                    type="submit">Guardar
+                    Producto
+                </button>
             </form>
         </div>
     </div>
-
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2018-2019 Company Sofia</p>
-    </footer>
 </div>

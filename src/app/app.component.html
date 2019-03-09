@@ -1,39 +1,51 @@
 <div class="container-fluid">
 
-<app-cabecera></app-cabecera>
+    <app-cabecera></app-cabecera>
 
-<div *ngIf="Nocultar" class="container" style="width: 300px; height: 200px">
+    <div *ngIf="Nocultar" class="container" style="width: 300px; height: 200px">
 
-    <form class="form">
-        <div class="form-group ">
-            <label for="">Usuario</label>
-            <input [(ngModel)]="registerUserData.correo" type="text" class="form-control" name="correo" placeholder="Enter Usuario">
-        </div>
-        <div class="form-group ">
-            <label for="">Contraseña</label>
-            <input [(ngModel)]="registerUserData.contrasena" type="password" class="form-control" name="contrasena"
-                placeholder="Password">
-        </div>
-        <button (click)="loginUser()" type="button" style="width: 270px" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
-            Iniciar</button>
-    </form>
-</div>
-
-<div class="container-fluid" *ngIf="usuario">
-
-    <div class="row">
-
-        <div class="col-md-2">
-            <br>
-            <app-navegacion></app-navegacion>
-        </div>
-        <div class="col-md-10">
-            <h1 class="display-4 my-0 mr-md-auto font-weight-normal text-center">Bienvenidos</h1>
-            <br>
-            <router-outlet></router-outlet>
-        </div>
-
+        <form class="form">
+            <div class="form-group ">
+                <label for="">Usuario</label>
+                <input [(ngModel)]="registerUserData.usuario" type="text" class="form-control" name="correo"
+                    placeholder="Enter Usuario">
+            </div>
+            <div class="form-group ">
+                <label for="">Contraseña</label>
+                <input [(ngModel)]="registerUserData.contrasena" type="password" class="form-control" name="contrasena"
+                    placeholder="Password">
+            </div>
+            <div class="form-group ">
+                <button mat-button [matMenuTriggerFor]="menu">
+                    
+                    {{ registerUserData.tipo_usuario != undefined ? registerUserData.tipo_usuario  : 'Tipo de Usuuario' }}
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button (click)="registerUserData.tipo_usuario = 'cliente'" mat-menu-item>Cliente</button>
+                    <button (click)="registerUserData.tipo_usuario = 'gerente'" mat-menu-item>Gerente</button>
+                </mat-menu>
+            </div>
+            <button (click)="loginUser()" [disabled]="registerUserData.tipo_usuario == undefined" type="button" style="width: 270px" class="btn btn-primary"><i
+                    class="fas fa-sign-in-alt"></i>
+                Iniciar</button>
+        </form>
     </div>
-</div>
+
+    <div class="container-fluid" *ngIf="usuario">
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <br>
+                <app-navegacion></app-navegacion>
+            </div>
+            <div class="col-md-10">
+                <h1 class="display-4 my-0 mr-md-auto font-weight-normal text-center">Bienvenidos</h1>
+                <br>
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+    </div>
 
 </div>

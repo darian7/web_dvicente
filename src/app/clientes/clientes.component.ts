@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service'
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-clientes',
@@ -10,19 +11,7 @@ export class ClientesComponent implements OnInit {
 
   constructor( private Servicio : AuthService) { }
 
-  clientes : Array<{
-
-    idCliente : Number,
-    nombre : String,
-    apellido : String,
-    identificacion : String,
-    fe_naci : String,
-    edad : Number,
-    fidelidad : Number,
-    estado : Number,
-    fkTipoCliente : Number
-
-  }> = [];
+  clientes : Array<any> = [];
 
   buscador: String="";
 
@@ -32,12 +21,9 @@ export class ClientesComponent implements OnInit {
 
 
   ConsultarClientes () {
-    this.Servicio.BuscarClientes().then(response => response.json()).
-    then(json => {
+    this.Servicio.BuscarClientes().subscribe(json => {
+      console.log(json)
       this.clientes = json;
-    }).catch(function(error) {
-      console.log('Hubo un problema con la petición Fetch:' + error.message);
-      return confirm('No Hay Conexion a Internet');
     });
   }
 

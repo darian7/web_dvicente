@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-facturas',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacturasComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ruta: ActivatedRoute,
+    private servicio: AuthService
+  ) {
+    this.ruta.params.subscribe(params => {
+
+      console.log(params['id'] + " esta es la ruta")
+
+    });
+  }
+
 
   ngOnInit() {
+
   }
+
+
 
 }
